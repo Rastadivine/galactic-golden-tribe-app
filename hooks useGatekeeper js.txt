@@ -1,0 +1,30 @@
+// hooks/useGatekeeper.js
+import { useEffect, useState } from 'react';
+import { useAccount } from 'wagmi';
+import { getContract } from '@/lib/contracts';
+import { ethers } from 'ethers';
+
+export function useGatekeeper(provider) {
+  const { address, isConnected } = useAccount();
+  const [allowed, setAllowed] = useState(null);
+
+  useEffect(() => {
+    if (!isConnected || !address || !provider) return;
+
+    async function checkAccess() {
+      try {
+        const contract = getContract(provider);
+        const traits = await contract.getTraits(address);
+        const isSoulbound = traits.role !== '';
+        setAllowed(isSoulbound);
+      } catch (err) {
+        console.warn('Access check failed', err);
+        setAllowed(false);
+      }
+    }
+
+    checkAccess();
+  }, [address, isConnected, provider]);
+
+  return allowed;
+}
