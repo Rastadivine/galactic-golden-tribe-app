@@ -1,0 +1,22 @@
+// lib/log.js
+const ritualLogs = [];
+
+export function logRitual(wallet, duration, action) {
+  ritualLogs.push({
+    wallet,
+    duration,
+    action,
+    timestamp: new Date().toISOString()
+  });
+  console.log("Ritual Logged:", { wallet, duration, action });
+}
+
+export function getLogs(wallet) {
+  return ritualLogs.filter(log => log.wallet === wallet);
+}
+
+export function getStreak(wallet) {
+  const logs = getLogs(wallet);
+  const today = new Date().toDateString();
+  return logs.some(log => new Date(log.timestamp).toDateString() === today);
+}

@@ -1,0 +1,10 @@
+// pages/oracle.js
+import CardDraw from "@/components/CardDraw";
+
+export default function OraclePage() {
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-purple-950 via-black to-indigo-900 p-8 flex items-center justify-center">
+      <CardDraw />
+    </div>
+  );
+}

@@ -1,0 +1,34 @@
+// components/CardDraw.jsx
+import { useState } from 'react';
+import { ORACLE_CARDS } from '@/data/cards';
+import { Button } from '@/components/ui/button';
+
+export default function CardDraw() {
+  const [card, setCard] = useState(null);
+  const [revealed, setRevealed] = useState(false);
+
+  const drawCard = () => {
+    const drawn = ORACLE_CARDS[Math.floor(Math.random() * ORACLE_CARDS.length)];
+    setCard(drawn);
+    setRevealed(true);
+  };
+
+  return (
+    <div className="text-white text-center max-w-xl mx-auto space-y-6 animate-fade-in">
+      {!revealed ? (
+        <>
+          <h2 className="text-3xl font-bold text-gold-300">Draw Your Oracle Card</h2>
+          <p className="text-gray-400">Align your breath. When you're ready, pull your card for insight.</p>
+          <Button onClick={drawCard} className="bg-pink-500 hover:bg-pink-400 text-black">Reveal My Card</Button>
+        </>
+      ) : (
+        <div className="bg-black bg-opacity-60 border border-pink-300 rounded-xl p-6 space-y-4 shadow-lg">
+          <h3 className="text-2xl font-bold text-pink-200">{card.name} {card.symbol}</h3>
+          <p className="italic text-pink-100">“{card.mantra}”</p>
+          <p className="text-sm text-gray-300">{card.description}</p>
+          <Button onClick={() => setRevealed(false)} className="bg-indigo-600 hover:bg-indigo-500">Draw Again</Button>
+        </div>
+      )}
+    </div>
+  );
+}

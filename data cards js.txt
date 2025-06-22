@@ -1,0 +1,25 @@
+// data/cards.js
+export const ORACLE_CARDS = [
+  {
+    name: "Golden Gate of Becoming",
+    mantra: "I am ever-evolving, glowing, and golden.",
+    description: "You are at the threshold of transformation. Step forward in courage and clarity.",
+    symbol: "🌀",
+    spread: "Galactic Golden Gate"
+  },
+  {
+    name: "Starseed Compass",
+    mantra: "I trust the cosmic path unfolding before me.",
+    description: "Now is the time to align with your original soul directive. Inner guidance is rising.",
+    symbol: "✨",
+    spread: "Ascension Spiral"
+  },
+  {
+    name: "Eternal Flame of Unity",
+    mantra: "I burn in harmony, love, and infinite connection.",
+    description: "You are being called to reconnect with the unified field of light. Love leads.",
+    symbol: "🔥",
+    spread: "Unity Flame"
+  },
+  // Add more cards as your tribe deck expands
+];
